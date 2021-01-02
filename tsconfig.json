@@ -7,6 +7,37 @@
     "noEmit": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "strict": true
-  }
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "strict": true,
+    "allowJs": true,
+    "esModuleInterop": true,
+    "isolatedModules": true,
+    "target": "esnext",
+    "baseUrl": ".",
+    "paths": {
+      "*": ["src/*"],
+      "tests/": ["src/__tests__/*"],
+      "@actions/*": ["src/actions/*"],
+      "@assets/*": ["src/assets/*"],
+      "@components/*": ["src/components/*"],
+      "@constants/*": ["src/constants/*"],
+      "@containers/*": ["src/containers/*"],
+      "@navigation/*": ["src/services/navigation/*"],
+      "@reducers/*": ["src/reducers/*"],
+      "@sagas/*": ["src/sagas/*"],
+      "@screens/*": ["src/screens/*"],
+      "@services/*": ["src/services/*"],
+      "@store/*": ["src/store/*"],
+      "@styles/*": ["src/styles/*"],
+      "@types/*": ["src/types/*"],
+      "@utils/*": ["src/utils/*"],
+    },
+  },
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js",
+    "jest.config.js"
+  ]
 }
