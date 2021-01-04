@@ -5,6 +5,8 @@ import {useDispatch} from 'react-redux';
 import {fetchUserAsync} from '@actions/usersActions';
 import Colors from '@constants/colors';
 import useSelector from '@utils/useSelector';
+import TaskCard from '@components/Card/TaskCard'
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 function Schedule() {
   const user = useSelector((state) => state.users.user);
@@ -21,14 +23,15 @@ function Schedule() {
   });
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.welcome}>{t('welcome')}</Text>
+    <SafeAreaView style={styles.container}>
+      {/* <Text style={styles.welcome}>{t('welcome')}</Text>
       <Text style={styles.instructions}>{t('instructions')}</Text>
       <Text style={styles.instructions}>{instructions}</Text>
       {user && <Text>user: </Text>}
       <Text>{JSON.stringify(user)}</Text>
-      <Button title={t('fetchUser')} onPress={fetchUser} />
-    </View>
+      <Button title={t('fetchUser')} onPress={fetchUser} /> */}
+      <TaskCard />
+    </SafeAreaView>
   );
 }
 
