@@ -6,11 +6,11 @@ interface Props {
 }
 
 const TaskCardContent = (props: Props) => {
-    return (
-        <View>
-            <Text></Text>
-        </View>
-    )
+  return (
+    <View>
+      <Text></Text>
+    </View>
+  )
 }
 
 export default TaskCardContent

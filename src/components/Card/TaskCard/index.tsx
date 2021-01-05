@@ -1,41 +1,62 @@
 import React, { Component } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import Accordion from 'react-native-collapsible/Accordion';
+import { Task } from 'types/task/task';
+import TaskCardHeader from './TaskCardHeader';
 
-interface Section {
-  title: String,
-  content: String
-}
-
-const SECTIONS = [
+const SECTIONS: Task[] = [
   {
-    title: 'First',
-    content: 'Lorem ipsum...',
+    title: 'Make a robot',
+    tagName: 'School',
+    duration: '6 hrs',
+    priority: 'Critical',
+    deadline: 'Tomorrow, 8PM',
+    notes: 'Loren ipsum...'
   },
   {
-    title: 'Second',
-    content: 'Lorem ipsum...',
+    title: 'Make a robot',
+    tagName: 'School',
+    duration: '6 hrs',
+    priority: 'Critical',
+    deadline: 'Tomorrow, 8PM',
+    notes: 'Loren ipsum...'
   },
   {
-    title: 'Third',
-    content: 'Lorem ipsum...',
+    title: 'Make a robot',
+    tagName: 'School',
+    duration: '6 hrs',
+    priority: 'Critical',
+    deadline: 'Tomorrow, 8PM',
+    notes: 'Loren ipsum...'
   },
   {
-    title: 'Forth',
-    content: 'Lorem ipsum...',
+    title: 'Make a robot',
+    tagName: 'School',
+    duration: '6 hrs',
+    priority: 'Critical',
+    deadline: 'Tomorrow, 8PM',
+    notes: 'Loren ipsum...'
   },
   {
-    title: 'Fifth',
-    content: 'Lorem ipsum...',
+    title: 'Make a robot',
+    tagName: 'School',
+    duration: '6 hrs',
+    priority: 'Critical',
+    deadline: 'Tomorrow, 8PM',
+    notes: 'Loren ipsum...'
   },
 ];
+
+interface Props {
+    
+}
 
 class TaskCard extends Component {
   state = {
     activeSections: [],
   };
 
-  _renderSectionTitle = (section: Section) => {
+  _renderSectionTitle = (task: Task) => {
     return (
       <View>
         {/* <Text>{section.content}</Text> */}
@@ -43,18 +64,14 @@ class TaskCard extends Component {
     );
   };
 
-  _renderHeader = (section: Section) => {
-    return (
-      <View style={styles.header}>
-        <Text>{section.title}</Text>
-      </View>
-    );
+  _renderHeader = (task: Task) => {
+    return (<TaskCardHeader task={task} isExpanded={true} />);
   };
 
-  _renderContent = (section: Section) => {
+  _renderContent = (task: Task) => {
     return (
       <View style={styles.content}>
-        <Text>{section.content}</Text>
+        <Text>{task.notes}</Text>
       </View>
     );
   };
@@ -65,7 +82,7 @@ class TaskCard extends Component {
 
   render() {
     return (
-      <ScrollView>
+      <ScrollView style={styles.background}>
         <Accordion
           sections={SECTIONS}
           activeSections={this.state.activeSections}
@@ -73,6 +90,7 @@ class TaskCard extends Component {
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           onChange={this._updateSections}
+          sectionContainerStyle={styles.accordian}
         />
       </ScrollView>
     );
@@ -87,6 +105,13 @@ const styles = StyleSheet.create({
   }, 
   header: {
     height: 100
+  },
+  background: {
+    backgroundColor: '#F0F0F0',
+    width:'100%'
+  },
+  accordian: {
+    margin: 20,
   }
 })
 
