@@ -19,12 +19,12 @@ export default SmallTag
 
 const styles = StyleSheet.create({
   container: {
-    borderRadius: 5,
+    borderRadius: 3,
     height: 15,
     justifyContent: 'center',
     minWidth: 50,
     alignItems: 'center',
-    paddingHorizontal: 5,
+    paddingHorizontal: 10,
   },
   text: {
     fontSize: 10

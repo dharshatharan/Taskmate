@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 import { ScrollView, StyleSheet, Text, View } from 'react-native'
 import Accordion from 'react-native-collapsible/Accordion';
 import { Task } from 'types/task/task';
+import TaskCardContent from './TaskCardContent';
 import TaskCardHeader from './TaskCardHeader';
 
-const SECTIONS: Task[] = [
+const TASKS: Task[] = [
   {
     title: 'Make a robot',
     tagName: 'School',
@@ -51,8 +52,12 @@ interface Props {
     
 }
 
+interface State {
+  activeSections: number[];
+}
+
 class TaskCard extends Component {
-  state = {
+  state: State = {
     activeSections: [],
   };
 
@@ -65,15 +70,11 @@ class TaskCard extends Component {
   };
 
   _renderHeader = (task: Task) => {
-    return (<TaskCardHeader task={task} isExpanded={true} />);
+    return (<TaskCardHeader task={task} isExpanded={this.state.activeSections.includes(TASKS.indexOf(task))} />);
   };
 
   _renderContent = (task: Task) => {
-    return (
-      <View style={styles.content}>
-        <Text>{task.notes}</Text>
-      </View>
-    );
+    return (<TaskCardContent task={task} isExpanded={this.state.activeSections.includes(TASKS.indexOf(task))} />);
   };
 
   _updateSections = (activeSections: Number[]) => {
@@ -84,13 +85,15 @@ class TaskCard extends Component {
     return (
       <ScrollView style={styles.background}>
         <Accordion
-          sections={SECTIONS}
+          sections={TASKS}
           activeSections={this.state.activeSections}
           renderSectionTitle={this._renderSectionTitle}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           onChange={this._updateSections}
           sectionContainerStyle={styles.accordian}
+          duration={150}
+          underlayColor='#F5F5F5'
         />
       </ScrollView>
     );
@@ -107,11 +110,13 @@ const styles = StyleSheet.create({
     height: 100
   },
   background: {
-    backgroundColor: '#F0F0F0',
+    backgroundColor: '#F5F5F5',
     width:'100%'
   },
   accordian: {
     margin: 20,
+    borderRadius: 10,
+    backgroundColor: '#FFFFFF'
   }
 })
 
