@@ -7,6 +7,7 @@ import Colors from '@constants/colors';
 import useSelector from '@utils/useSelector';
 import TaskCard from '@components/Card/TaskCard'
 import { SafeAreaView } from 'react-native-safe-area-context';
+import DateCarousel from 'components/Carousel/DateCarousel';
 
 function Schedule() {
   const user = useSelector((state) => state.users.user);
@@ -24,13 +25,12 @@ function Schedule() {
 
   return (
     <SafeAreaView style={styles.container}>
-      {/* <Text style={styles.welcome}>{t('welcome')}</Text>
-      <Text style={styles.instructions}>{t('instructions')}</Text>
-      <Text style={styles.instructions}>{instructions}</Text>
-      {user && <Text>user: </Text>}
-      <Text>{JSON.stringify(user)}</Text>
-      <Button title={t('fetchUser')} onPress={fetchUser} /> */}
-      <TaskCard />
+      <View style={{height: '10%'}}>
+        <DateCarousel />
+      </View>
+      <View style={{height: '90%', width: '100%'}}>
+        <TaskCard />
+      </View>
     </SafeAreaView>
   );
 }
@@ -40,7 +40,6 @@ export default memo(Schedule);
 const styles = StyleSheet.create({
   container: {
     width: '100%',
-    flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
     backgroundColor: Colors.aliceBlue,
