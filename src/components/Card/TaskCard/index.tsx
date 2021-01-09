@@ -61,13 +61,13 @@ class TaskCard extends Component {
     activeSections: [],
   };
 
-  _renderSectionTitle = (task: Task) => {
-    return (
-      <View>
-        {/* <Text>{section.content}</Text> */}
-      </View>
-    );
-  };
+  // _renderSectionTitle = (task: Task) => {
+  //   return (
+  //     <View>
+  //       <Text>TEST</Text>
+  //     </View>
+  //   );
+  // };
 
   _renderHeader = (task: Task) => {
     return (<TaskCardHeader task={task} isExpanded={this.state.activeSections.includes(TASKS.indexOf(task))} />);
@@ -87,7 +87,7 @@ class TaskCard extends Component {
         <Accordion
           sections={TASKS}
           activeSections={this.state.activeSections}
-          renderSectionTitle={this._renderSectionTitle}
+          // renderSectionTitle={  this._renderSectionTitle}
           renderHeader={this._renderHeader}
           renderContent={this._renderContent}
           onChange={this._updateSections}
@@ -116,7 +116,7 @@ const styles = StyleSheet.create({
   accordian: {
     margin: 20,
     borderRadius: 10,
-    backgroundColor: '#FFFFFF'
+    backgroundColor: '#FFFFFF',
   }
 })
 

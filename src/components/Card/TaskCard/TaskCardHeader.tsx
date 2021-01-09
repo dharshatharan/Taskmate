@@ -25,23 +25,28 @@ const TaskCardHeader = ({task, isExpanded}: Props) => {
   }
 
   return (
-    <View style={[styles.container, bottomRadius(isExpanded)]}>
-      <View style={[styles.row, {justifyContent: 'space-between'}]}>
-        <Text style={styles.title}>{task.title}</Text>
-        <View style={{backgroundColor: '#A0A0A0', marginTop: -20, borderRadius: 5, marginRight: 0, paddingHorizontal: 10, justifyContent: 'flex-end', paddingBottom: 5}}>
-          <Text style={{fontSize: 10}}>{task.tagName}</Text>
+    <View style={{backgroundColor:'#F5F5F5', width:'100%'}}>
+      {/* <View> */}
+        <SmallTag style={{alignSelf: 'center', marginBottom: 10}} color="#E3E3E3">6:00 PM</SmallTag>
+      {/* </View> */}
+      <View style={[styles.container, bottomRadius(isExpanded)]}>
+        <View style={[styles.row, {justifyContent: 'space-between'}]}>
+          <Text style={styles.title}>{task.title}</Text>
+          <View style={{backgroundColor: '#A0A0A0', marginTop: -20, borderRadius: 5, marginRight: 0, paddingHorizontal: 10, justifyContent: 'flex-end', paddingBottom: 5}}>
+            <Text style={{fontSize: 10}}>{task.tagName}</Text>
+          </View>
         </View>
-      </View>
-      <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
-        <View style={styles.row}>
-          <SmallTag style={{marginRight: 15}} color={'#adadad'}>{task.duration}</SmallTag>
-          <SmallTag style={{marginRight: 15}} color={'#adadad'}>{task.priority}</SmallTag>
-          <Text style={styles.deadlineText}>{'Due: ' + task.deadline}</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between', paddingVertical: 10}}>
+          <View style={styles.row}>
+            <SmallTag style={{marginRight: 15}} color={'#adadad'}>{task.duration}</SmallTag>
+            <SmallTag style={{marginRight: 15}} color={'#adadad'}>{task.priority}</SmallTag>
+            <Text style={styles.deadlineText}>{'Due: ' + task.deadline}</Text>
+          </View>
+          <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size={16} color={'#D1D1D1'} />
         </View>
-        <Icon name={isExpanded ? 'chevron-up' : 'chevron-down'} size={16} color={'#D1D1D1'} />
-      </View>
-      <View style={styles.progressBar}>
-        <Progress.Bar progress={0.3} width={null} color='#CBCBCB' borderWidth={0} unfilledColor='#F2F2F2' />
+        <View style={styles.progressBar}>
+          <Progress.Bar progress={0.3} width={null} color='#CBCBCB' borderWidth={0} unfilledColor='#F2F2F2' />
+        </View>
       </View>
     </View>
   )
@@ -56,6 +61,14 @@ const styles = StyleSheet.create({
     paddingVertical: 10,
     borderTopRightRadius: 10,
     borderTopLeftRadius: 10,
+    // shadowColor: "#000",
+    // shadowOffset: {
+    //   width: 0,
+    //   height: 2,
+    // },
+    // shadowOpacity: 0.10,
+    // shadowRadius: 10,
+    // elevation: 2,
   },
   title: {
     fontSize: 13,
