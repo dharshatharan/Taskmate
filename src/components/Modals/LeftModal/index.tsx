@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import {Dimensions, ScrollView, StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {ScrollView, StyleSheet, Text, View} from 'react-native';
 import Modal from 'react-native-modal';
 // import ModalBaseScene from '@utils/ModalBaseScene';
 
@@ -8,7 +8,7 @@ type State = {
   visible: boolean
 };
 
-class BottomModal extends Component<any, State> {
+class LeftModal extends Component<any, State> {
   public scrollViewRef: React.RefObject<ScrollView>;
   constructor(props: any) {
     super(props);
@@ -27,14 +27,21 @@ class BottomModal extends Component<any, State> {
 
   handleOnScroll = (event: any) => {
     this.setState({
-      scrollOffset: event.nativeEvent.contentSize.height - event.nativeEvent.layoutMeasurement.height,
+      scrollOffset: event.nativeEvent.contentOffset.y,
     });
   };
+
   handleScrollTo = (p: any) => {
     if (this.scrollViewRef.current) {
       this.scrollViewRef.current.scrollTo(p);
     }
   };
+
+  setModalVisible = (visible: boolean) => {
+    this.setState({
+      visible: visible
+    })
+  }
 
   render(): React.ReactElement<any> {
     return (
@@ -42,38 +49,31 @@ class BottomModal extends Component<any, State> {
         testID={'modal'}
         isVisible={this.isVisible()}
         onSwipeComplete={this.close}
-        swipeDirection={['down']}
-        scrollTo={this.handleScrollTo}
-        scrollOffset={this.state.scrollOffset}
-        // scrollOffsetMax={e.nativeEvent.contentSize.height - e.nativeEvent.layoutMeasurement.height,} // content height - ScrollView height
-        propagateSwipe={true}
+        swipeDirection={['left']}
+        // scrollTo={this.handleScrollTo}
+        // scrollOffset={this.state.scrollOffset}
+        // scrollOffsetMax={400 - 300} // content height - ScrollView height
+        // propagateSwipe={true}
+        animationIn='slideInLeft'
+        animationOut='slideOutLeft'
+        onBackdropPress={() => this.setModalVisible(false)}
         style={styles.modal}>
         <View style={styles.scrollableModal}>
-          <View style={{height: '90%'}}>
-            <View style={{backgroundColor: '#FFFFFF', height: 100}}>
-              <Text>Test</Text>
+          {/* <ScrollView
+            ref={this.scrollViewRef}
+            onScroll={this.handleOnScroll}
+            scrollEventThrottle={16}> */}
+            <View style={styles.modalInner}>
+              <Text style={styles.scrollableModalText1}>
+                You can scroll me up! 👆
+              </Text>
             </View>
-            <ScrollView
-              ref={this.scrollViewRef}
-              onScroll={this.handleOnScroll}
-              scrollEventThrottle={16}>
-              <TouchableOpacity activeOpacity={1}>
-                <View style={styles.scrollableModalContent1}>
-                  <Text style={styles.scrollableModalText1}>
-                    You can scroll me up! 👆
-                  </Text>
-                </View>
-                <View style={styles.scrollableModalContent2}>
-                  <Text style={styles.scrollableModalText2}>
-                    Same here as well! ☝
-                  </Text>
-                </View>
-              </TouchableOpacity>
-            </ScrollView>
-            <View style={{backgroundColor: '#FFFFFF'}}>
-              <Text>Test</Text>
-            </View>
-          </View>
+            {/* <View style={styles.scrollableModalContent2}>
+              <Text style={styles.scrollableModalText2}>
+                Same here as well! ☝
+              </Text>
+            </View> */}
+          {/* </ScrollView> */}
         </View>
       </Modal>
     );
@@ -82,16 +82,29 @@ class BottomModal extends Component<any, State> {
 
 const styles = StyleSheet.create({
   modal: {
-    justifyContent: 'flex-end',
+    // justifyContent: 'flex-end',
+    alignItems: 'flex-start',
     margin: 0,
+    height: '100%',
+    width: '100%',
+    // backgroundColor: '#FFFFFF'
+  },
+  modalInner: {
+    // alignItems: 'flex-start',
+    margin: 0,
+    height: '100%',
+    width: '70%',
+    backgroundColor: '#000000',
+    opacity: 1
   },
   scrollableModal: {
     height: '100%',
-    justifyContent: 'flex-end',
+    width: '100%',
     backgroundColor: 'rgba(0, 0, 0, 0.0)',
+    // opacity: 0.5
   },
   scrollableModalContent1: {
-    height: 500,
+    // height: 200,
     backgroundColor: '#87BBE0',
     alignItems: 'center',
     justifyContent: 'center',
@@ -101,7 +114,7 @@ const styles = StyleSheet.create({
     color: 'white',
   },
   scrollableModalContent2: {
-    height: 500,
+    // height: 200,
     backgroundColor: '#A9DCD3',
     alignItems: 'center',
     justifyContent: 'center',
@@ -112,4 +125,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default BottomModal;
+export default LeftModal;

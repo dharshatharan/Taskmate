@@ -3,7 +3,7 @@ import * as React from 'react';
 import {useTranslation} from 'react-i18next';
 // import RNBootSplash from 'react-native-bootsplash';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import Schedule from '@screens/Schedule';
+import Schedule from 'screens/Schedule/Root';
 import Tasks from '@screens/Tasks';
 import {sleep} from './utils/async';
 

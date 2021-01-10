@@ -2,7 +2,7 @@ import {render} from '@testing-library/react-native';
 import React from 'react';
 import 'react-native';
 import {Provider} from 'react-redux';
-import Schedule from '@screens/Schedule';
+import Schedule from 'screens/Schedule/Root';
 import {store} from '../../store';
 
 describe('Schedule', () => {
