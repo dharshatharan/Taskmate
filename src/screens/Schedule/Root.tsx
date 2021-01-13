@@ -2,7 +2,7 @@ import React from 'react';
 import { Text } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import Schedule from './Schedule'
-import BottomModal from '@components/Modals/BottomModal'
+import AddTaskBottomSheet from '@components/AddTaskBottomSheet'
 import LeftModal from '@components/Modals/LeftModal'
 // import Styles from '../../../styles';
 import { TouchableOpacity } from 'react-native-gesture-handler';
@@ -28,7 +28,7 @@ export default function Root({ navigation }: any) {
             />
             <Stack.Screen
                 name="Detail"
-                component={BottomModal}
+                component={LeftModal}
                 options={{ title: 'CPU Detail' }}
             />
         </Stack.Navigator>
